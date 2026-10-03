@@ -36,15 +36,22 @@ jobs:
           chmod +x /tmp/micromamba
 
           echo ">>> [INSTALL] Installing Geant4 via micromamba..."
-          /tmp/micromamba create -y -p /tmp/g4_env -c conda-forge geant4 cmake make gxx_linux-64 python=3.11 pandas numpy google-api-python-client google-auth-httplib2 google-auth-oauthlib openpyxl
+          /tmp/micromamba create -y -p /tmp/g4_env -c conda-forge geant4 expat cmake make gxx_linux-64 python=3.11 pandas numpy google-api-python-client google-auth-httplib2 google-auth-oauthlib openpyxl
 
       - name: Compile Geant4 Simulation
         shell: bash
         run: |
           echo ">>> [BUILD] Compiling Sim executable..."
+          export PATH="/tmp/g4_env/bin:$PATH"
+          export LD_LIBRARY_PATH="/tmp/g4_env/lib:$LD_LIBRARY_PATH"
           mkdir -p build && cd build
-          /tmp/g4_env/bin/cmake -DCMAKE_PREFIX_PATH=/tmp/g4_env ..
-          make -j2
+          /tmp/g4_env/bin/cmake \
+            -DCMAKE_PREFIX_PATH=/tmp/g4_env \
+            -DEXPAT_ROOT=/tmp/g4_env \
+            -DEXPAT_LIBRARY=/tmp/g4_env/lib/libexpat.so \
+            -DEXPAT_INCLUDE_DIR=/tmp/g4_env/include \
+            ..
+          make -j2 Sim
           echo ">>> [BUILD] Sim compiled successfully!"
           ls -la Sim
 
@@ -54,6 +61,7 @@ jobs:
           GDRIVE_FOLDER_ID: ${{ github.event.inputs.gdrive_folder }}
         run: |
           export PATH="/tmp/g4_env/bin:$PATH"
+          export LD_LIBRARY_PATH="/tmp/g4_env/lib:$LD_LIBRARY_PATH"
           /tmp/g4_env/bin/python -u run_geant4_task.py \
             --runner-id ${{ matrix.runner_id }} \
             --num-runners 20 \
