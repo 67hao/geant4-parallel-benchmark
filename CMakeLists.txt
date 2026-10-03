@@ -41,9 +41,6 @@ target_link_libraries(Sim ${Geant4_LIBRARIES}) # Link Sim to Geant4 libraries
 target_include_directories(Sim PRIVATE ${PROJECT_SOURCE_DIR}/include) # Include header files for Sim
 target_compile_definitions(Sim PRIVATE MACROPATH="${PROJECT_BINARY_DIR}/macros") # Define MACROPATH for Sim in build folder
 
-# b) Create executable target AutoMac from AutoMac.cc
-add_executable(AutoMac AutoMac.cc) 
-target_compile_definitions(AutoMac PRIVATE MACROPATH="${PROJECT_BINARY_DIR}/macros") # Define MACROPATH for AutoMac in build folder
 
 # --- 5. Copy macro files to build/macros directory ---
 
