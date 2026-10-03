@@ -36,7 +36,7 @@ jobs:
           chmod +x /tmp/micromamba
 
           echo ">>> [INSTALL] Installing Geant4 via micromamba..."
-          /tmp/micromamba create -y -p /tmp/g4_env -c conda-forge geant4 expat cmake make gxx_linux-64 python=3.11 pandas numpy google-api-python-client google-auth-httplib2 google-auth-oauthlib openpyxl
+          /tmp/micromamba create -y -p /tmp/g4_env -c conda-forge geant4 expat zlib cmake make gxx_linux-64 python=3.11 pandas numpy google-api-python-client google-auth-httplib2 google-auth-oauthlib openpyxl
 
       - name: Compile Geant4 Simulation
         shell: bash
@@ -47,9 +47,13 @@ jobs:
           mkdir -p build && cd build
           /tmp/g4_env/bin/cmake \
             -DCMAKE_PREFIX_PATH=/tmp/g4_env \
+            -DCMAKE_IGNORE_PATH="/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib" \
             -DEXPAT_ROOT=/tmp/g4_env \
             -DEXPAT_LIBRARY=/tmp/g4_env/lib/libexpat.so \
             -DEXPAT_INCLUDE_DIR=/tmp/g4_env/include \
+            -DZLIB_ROOT=/tmp/g4_env \
+            -DZLIB_LIBRARY=/tmp/g4_env/lib/libz.so \
+            -DZLIB_INCLUDE_DIR=/tmp/g4_env/include \
             ..
           make -j2 Sim
           echo ">>> [BUILD] Sim compiled successfully!"
