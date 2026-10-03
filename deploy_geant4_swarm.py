@@ -29,7 +29,7 @@ GDRIVE_FOLDER_ID = "1Q6T25GCTu3UO2xzlJrNUPKCzSdjoGFIx"  # Paper10.1_Geant4
 
 ACCOUNTS = [
     'haoidlemystic1', 'vuicho', 'haoidle4zk', '67hao', 'idlemystich',
-    'CarwynDuc', 'laolaolaoma09', 'Bethwl', 'coredaohaojack', '1983huehao'
+    'CarwynDuc', 'laolaolaoma09', 'Bethwl', 'coredaohaojack'
 ]
 
 def set_repo_secret(owner: str, repo: str, token: str, secret_name: str, secret_value: str) -> bool:

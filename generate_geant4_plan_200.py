@@ -19,8 +19,7 @@ ACCOUNTS = [
     'CarwynDuc',
     'laolaolaoma09',
     'Bethwl',
-    'coredaohaojack',
-    '1983huehao'
+    'coredaohaojack'
 ]
 
 NUM_RUNNERS_PER_ACC = 20

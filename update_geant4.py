@@ -152,7 +152,7 @@ def main():
     acc_stats = []
     target_accounts = [
         'haoidlemystic1', 'vuicho', 'haoidle4zk', '67hao', 'idlemystich',
-        'CarwynDuc', 'laolaolaoma09', 'Bethwl', 'coredaohaojack', '1983huehao'
+        'CarwynDuc', 'laolaolaoma09', 'Bethwl', 'coredaohaojack'
     ]
     if STATE_FILE.exists():
         with open(STATE_FILE, "r", encoding="utf-8") as sf:
