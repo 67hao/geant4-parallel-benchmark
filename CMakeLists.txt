@@ -14,6 +14,13 @@ project(ECD_NaI_Detector)
 set(CMAKE_CONFIGURATION_TYPES "Release" CACHE STRING "Configs" FORCE)
 
 # --- 2. Find Geant4 package ---
+if(EXISTS "/tmp/g4_env")
+  list(PREPEND CMAKE_PREFIX_PATH "/tmp/g4_env")
+  set(CMAKE_FIND_ROOT_PATH "/tmp/g4_env")
+  set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+  set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+  set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+endif()
 
 # a) Find Geant4 package
 find_package(Geant4 REQUIRED)
