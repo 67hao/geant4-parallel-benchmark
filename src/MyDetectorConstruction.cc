@@ -285,7 +285,8 @@ G4VPhysicalVolume* MyDetectorConstruction::Construct() {
 	G4Tubs* solidDetField = new G4Tubs("DetField", 0, GEO::Det_Radius, GEO::Det_Length / 2, 0, 360 * deg);
 	G4LogicalVolume* DetField_LV = new G4LogicalVolume(solidDetField, NIST->FindOrBuildMaterial("G4_Galactic"), "DetField_LV");
 	G4double DetField_PosZ = (GEO::Det_ZFront + GEO::Det_ZBack) / 2.0;
-	new G4PVPlacement(nullptr, G4ThreeVector(0, 0, DetField_PosZ), DetField_LV, "DetField", World_LV, false, 0, true);
+	// new G4PVPlacement(nullptr, G4ThreeVector(0, 0, DetField_PosZ), DetField_LV, "DetField", World_LV, false, 0, true);
+
 
 	// ===============================================
 	// 6b. Virtual Detector Plane (surface-crossing flux tally at z = 70.0 cm)

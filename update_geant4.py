@@ -115,7 +115,7 @@ def main():
         acc_dir.mkdir(parents=True, exist_ok=True)
         local_path = acc_dir / fname
         fsize = int(f.get("size", 0))
-        if not local_path.exists() or local_path.stat().st_size != fsize:
+        if not local_path.exists() or local_path.stat().st_size < fsize:
             try:
                 download_file(service, f["id"], local_path)
                 download_count += 1

@@ -1,8 +1,0 @@
-/control/verbose 0
-/run/verbose 0
-/DetectorConstruction/Sample_Material S1
-/DetectorConstruction/Sample_Thickness 5.0
-/DetectorConstruction/update
-/run/initialize
-/gun/energy 60.0 keV
-/run/beamOn 1000000
